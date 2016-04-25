@@ -89,7 +89,7 @@ func handleCommand(stdin *bufio.Reader, text string) bool {
 
 	case "delete-dataset-files":
 		if ds != nil {
-			fmt.Printf("This *WILL* delete actively selected %d files from the FS. Are you sure? (yes/no)\n")
+			fmt.Printf("This *WILL* delete actively selected %d files from the FS. Are you sure? (yes/no)\n", ds.GetSize())
 			yesOrNo, err := stdin.ReadString('\n')
 			yesOrNo = strings.TrimSpace(yesOrNo)
 			if yesOrNo != "yes" || err != nil {
@@ -117,7 +117,7 @@ func handleCommand(stdin *bufio.Reader, text string) bool {
 		if ds != nil {
 			paths := ds.GetDatasetPathes()
 			for i, path := range paths {
-				if i >= 2 {
+				if i >= 25 {
 					fmt.Printf("... %d more\n", ds.GetSize() - i)
 					break
 				}
